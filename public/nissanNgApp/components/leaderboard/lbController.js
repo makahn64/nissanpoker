@@ -88,6 +88,7 @@ app.controller( "lbController", function ( $scope, $timeout, $log, lbService, $s
         else {
             if (_goToVideoNow){
                 $log.info( "lbController: now for a word from our sponsor." );
+                killVidLoopHard();
                 $state.go('video');
             } else {
                 $log.info( "lbController: Leaderboard build complete. Sleeping before refreshing." );
@@ -153,6 +154,7 @@ app.controller( "lbController", function ( $scope, $timeout, $log, lbService, $s
     $scope.logoClicked = function(){
 
         if ($scope.leaderboard.length > 1){
+            killVidLoopHard();
             $state.go( "ft" );
         }
         else {
@@ -164,10 +166,14 @@ app.controller( "lbController", function ( $scope, $timeout, $log, lbService, $s
         _goToVideoNow = true;
     }, SHOW_VIDEO_AFTER_SECONDS*1000);
 
-    $scope.$on( "$destroy", function () {
+    function killVidLoopHard(){
         if ( vidLooper ) {
             $timeout.cancel( vidLooper );
         }
+    }
+
+    $scope.$on( "$destroy", function () {
+        killVidLoopHard();
     } );
 
     checkLBForChanges();
