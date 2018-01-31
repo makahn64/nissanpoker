@@ -15,7 +15,7 @@ I did not check in the video, that needs to go in `public/vids/attract.mp4`!
 
 To run the app:  `node www/bin`
 
-To see the app: `localhost:8003`. Why 8003? WTF knows? I cannot remember that far back. 
+To see the app: `localhost:8003`. Why 8003? Who knows? I cannot remember that far back. 
 You can change it in `bin/www`.
 
 
